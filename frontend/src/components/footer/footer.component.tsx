@@ -140,37 +140,7 @@ const FooterComponent = () => {
           <p className="text-base text-gray-400">
             &copy; 2025 StorySpark.AI - All rights reserved.
           </p>
-
-          <div className="flex space-x-6">
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
-
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <i className="fab fa-facebook"></i>
-            </a>
-
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <i className="fab fa-instagram"></i>
-            </a>
-
-            <a
-              href="#"
-              className="text-gray-400 hover:text-white transition-colors duration-200"
-            >
-              <i className="fab fa-github"></i>
-            </a>
-          </div>
-        </div>
+ </div>
       </div>
     </div>
   );
