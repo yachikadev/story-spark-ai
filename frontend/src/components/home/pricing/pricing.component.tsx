@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const pricingPlans = [
   {
@@ -13,6 +15,7 @@ const pricingPlans = [
     buttonLabel: "Get Started",
     buttonStyle: "bg-gray-500 text-gray-300 hover:bg-gray-600",
     highlight: false,
+    linkto: "/signup"
   },
   {
     title: "Pro",
@@ -24,9 +27,12 @@ const pricingPlans = [
       "Priority support",
       "Analytics dashboard",
     ],
+    
     buttonLabel: "Start Pro Trial",
     buttonStyle: "bg-indigo-600 text-white hover:bg-indigo-700",
     highlight: true,
+    linkto: "/payment"
+    
   },
   {
     title: "Enterprise",
@@ -41,10 +47,12 @@ const pricingPlans = [
     buttonLabel: "Contact Sales",
     buttonStyle: "bg-gray-800 text-white hover:bg-gray-900",
     highlight: false,
+    linkto: "/payment"
   },
 ];
 
 const PricingComponent = () => {
+  const navigate = useNavigate();
   return (
     <section className="mb-16 py-12" id="pricing-section">
       <div className="text-center mb-12">
@@ -59,11 +67,26 @@ const PricingComponent = () => {
         {pricingPlans.map((plan, index) => (
           <div
             key={index}
-            className={`bg-blue-500/20 p-8 rounded-lg shadow-sm border border-gray-200 ${
-              plan.highlight
-                ? "border-indigo-600 relative transform scale-105"
-                : ""
-            }`}
+           className={`
+                         bg-blue-500/20
+                          p-8
+                          rounded-lg
+                          shadow-sm
+                          border
+                         border-gray-200
+                          transition-all
+                          duration-300
+                          cursor-pointer
+                          hover:-translate-y-3
+                          hover:shadow-2xl
+                          hover:border-indigo-500
+                          hover:scale-[1.02]
+              ${
+                  plan.highlight
+                  ? "border-indigo-600 relative scale-105"
+                  : ""
+                }
+              `}
           >
             {plan.highlight && (
               <div className="absolute top-0 right-0 bg-indigo-600 text-white px-3 py-1 text-sm rounded-bl-lg rounded-tr-lg">
@@ -72,10 +95,10 @@ const PricingComponent = () => {
             )}
             <h3 className="text-xl font-semibold mb-2 text-gray-300">{plan.title}</h3>
             <div className="mb-4">
-              <span className="text-4xl font-bold text-gray-500">{plan.price}</span>
+              <span className="text-4xl font-bold text-gray-300">{plan.price}</span>
               <span className="text-gray-500">{plan.duration}</span>
             </div>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 text-gray-500">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-center">
                   <i className="fas fa-check text-green-500 mr-2"></i>
@@ -83,12 +106,19 @@ const PricingComponent = () => {
                 </li>
               ))}
             </ul>
-            <button
-              className={`w-full !rounded-button px-4 py-2 ${plan.buttonStyle}`}
-            >
-              {plan.buttonLabel}
-            </button>
-          </div>
+            <button  className="..." 
+  onClick={() => {
+    navigate(plan.linkto);
+  }}
+>
+  <Link 
+  to={plan.linkto} 
+  className={`mt-6 block w-full text-center font-medium py-2.5 px-4 rounded-lg transition-colors ${plan.buttonStyle}`}
+>
+  {plan.buttonLabel}
+</Link>
+</button>
+              </div>
         ))}
       </div>
     </section>

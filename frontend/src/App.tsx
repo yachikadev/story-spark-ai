@@ -1,3 +1,4 @@
+import StoryInspirationWrapper from "./components/StoryInspirationWrapper";
 import { JSX, useEffect, useState } from "react";
 import WritingAssistantComponent from "./components/writing-assistant/writing_assistant.component";
 import {
@@ -6,6 +7,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+
 
 import HeroSectionComponent from "./components/hero/hero_section.component";
 import HomeComponent from "./components/home/home.component";
@@ -29,10 +32,10 @@ import EmailValidationComponent from "./components/email_validation/email.valida
 import { USER_ROLE } from "./constants/role";
 import PostListsComponent from "./components/dashboard/posts/post_lists.component";
 import ProfileComponent from "./components/dashboard/profile/profile.component";
+import PaymentComponent from "./components/home/pricing/payment.component";
 import Contact from "./components/contactus/contactus";
 import HelpCenterComponent from "./components/help_center/help_center.component";
-
-
+import ErrorBoundary from "./components/ErrorBoundary";
 import AboutUsComponent from "./components/footer/about-us.tsx";
 import CareerComponent from "./components/footer/career.tsx";
 // import ContactUsComponent from "./components/footer/contact-us.tsx";
@@ -50,10 +53,10 @@ const ProtectedRoute = ({
 }) => {
   const user = getUserInfo();
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
   }
   if (!allowedRoles.includes(user.role)) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" />;
   }
   return element;
 };
@@ -75,6 +78,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       {/* Dark Mode Toggle Button */}
       {/* <div className="fixed top-4 right-4 z-50">
         <button
@@ -112,11 +116,20 @@ function App() {
           }
         />
         <Route
+          path="/story-inspiration"
+          element={
+            <RootLayout>
+              <StoryInspirationWrapper />
+            </RootLayout>
+          }
+        />
+
+        <Route
           path="/dashboard"
           element={
             <ProtectedRoute
               element={<DashboardLayout />}
-              allowedRoles={[USER_ROLE.ADMIN, USER_ROLE.SUPER_ADMIN]}
+              allowedRoles={[USER_ROLE.ADMIN]}
             />
           }
         >
@@ -216,8 +229,8 @@ function App() {
               />
             }
           />
-        </Route>
 
+        </Route>
         <Route
           path="/stories"
           element={
@@ -239,8 +252,7 @@ function App() {
           path="/auth/email-validation"
           element={<EmailValidationComponent />}
         />
-
-
+        <Route path="/payment" element={<PaymentComponent />} />
         <Route
           path="/signup"
           element={
@@ -257,24 +269,24 @@ function App() {
             </RootLayout>
           }
         />
-       <Route
-  path="/explore"
-  element={
-    <ProtectedRoute
-      element={
-        <RootLayout>
-          <ExploreComponent />
-        </RootLayout>
-      }
-      allowedRoles={[
-        USER_ROLE.USER,
-        USER_ROLE.WRITER,
-        USER_ROLE.ADMIN,
-        USER_ROLE.SUPER_ADMIN,
-      ]}
-    />
-  }
-/>
+        <Route
+          path="/explore"
+          element={
+            <ProtectedRoute
+              element={
+                <RootLayout>
+                  <ExploreComponent />
+                </RootLayout>
+              }
+              allowedRoles={[
+                USER_ROLE.USER,
+                USER_ROLE.WRITER,
+                USER_ROLE.ADMIN,
+                USER_ROLE.SUPER_ADMIN,
+              ]}
+            />
+          }
+        />
         <Route
           path="/help"
           element={
@@ -326,23 +338,23 @@ function App() {
           }
         />
         <Route
-  path="/contact-us"
-  element={
-    <ProtectedRoute
-      element={
-        <RootLayout>
-          <Contact />
-        </RootLayout>
-      }
-      allowedRoles={[
-        USER_ROLE.USER,
-        USER_ROLE.WRITER,
-        USER_ROLE.ADMIN,
-        USER_ROLE.SUPER_ADMIN,
-      ]}
-    />
-  }
-/>
+          path="/contact-us"
+          element={
+            <ProtectedRoute
+              element={
+                <RootLayout>
+                  <Contact />
+                </RootLayout>
+              }
+              allowedRoles={[
+                USER_ROLE.USER,
+                USER_ROLE.WRITER,
+                USER_ROLE.ADMIN,
+                USER_ROLE.SUPER_ADMIN,
+              ]}
+            />
+          }
+        />
         <Route
           path="/blog"
           element={
@@ -367,24 +379,24 @@ function App() {
             </RootLayout>
           }
         />
-       <Route
-  path="/community"
-  element={
-    <ProtectedRoute
-      element={
-        <RootLayout>
-          <CommunityComponent />
-        </RootLayout>
-      }
-      allowedRoles={[
-        USER_ROLE.USER,
-        USER_ROLE.WRITER,
-        USER_ROLE.ADMIN,
-        USER_ROLE.SUPER_ADMIN,
-      ]}
-    />
-  }
-/>
+        <Route
+          path="/community"
+          element={
+            <ProtectedRoute
+              element={
+                <RootLayout>
+                  <CommunityComponent />
+                </RootLayout>
+              }
+              allowedRoles={[
+                USER_ROLE.USER,
+                USER_ROLE.WRITER,
+                USER_ROLE.ADMIN,
+                USER_ROLE.SUPER_ADMIN,
+              ]}
+            />
+          }
+        />
         <Route
           path="*"
           element={
