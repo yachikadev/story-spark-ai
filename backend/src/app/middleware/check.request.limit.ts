@@ -7,6 +7,9 @@ import { JwtHalers } from "../../utils/jwt.helper";
 import config from "../../config";
 import { Secret } from "jsonwebtoken";
 
+// Note: Actual quota/limit enforcement was moved to the ai_model.service layer 
+// to allow for atomic MongoDB operations and rollback on failure.
+// This middleware now only ensures the user is authenticated and exists.
 const checkRequestLimit =
   () => async (req: Request, res: Response, next: NextFunction) => {
     try {

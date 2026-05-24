@@ -32,7 +32,7 @@ const aiModelGenerate = async (payload: IAIModel, token: ITokenPayload) => {
   }
 
   const requestLimit =
-    REQUEST_LIMITS[user.subscriptionType as keyof typeof REQUEST_LIMITS];
+    REQUEST_LIMITS[user.subscriptionType as keyof typeof REQUEST_LIMITS] || REQUEST_LIMITS.free;
 
   // Atomic quota reservation
   const updatedUser = await User.findOneAndUpdate(
@@ -58,7 +58,7 @@ const aiModelGenerate = async (payload: IAIModel, token: ITokenPayload) => {
     ]);
 
     if (!result || (Array.isArray(result) && result.length === 0)) {
-      throw new Error("Generation failed.");
+      throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, "Generation failed or returned empty results.");
     }
     return result;
   } catch (error) {
@@ -67,7 +67,10 @@ const aiModelGenerate = async (payload: IAIModel, token: ITokenPayload) => {
       { email: email, requestsThisMonth: { $gt: 0 } },
       { $inc: { requestsThisMonth: -1 } }
     );
-    throw new ApiError(httpStatus.GATEWAY_TIMEOUT, "Request timed out or generation failed!");
+    if (error instanceof ApiError) {
+      throw error;
+    }
+    throw new ApiError(httpStatus.INTERNAL_SERVER_ERROR, "Generation failed!");
   }
 };
 
