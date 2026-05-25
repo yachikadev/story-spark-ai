@@ -51,6 +51,14 @@ if (!email || !emailRegex.test(email)) {
     { label: "Help Center", to: "/help"       },
     { label: "Community",   to: "/community"  },
     { label: "Guidelines",  to: "/guidelines" },
+    { label: "Contributors", to: "/contributors" },
+    { label: "Report Bug",   to: import.meta.env.VITE_GITHUB_REPO_ISSUES_URL },
+  ];
+
+  const legalLinks = [
+    { label: "Privacy Policy", to: "/privacy-policy" },
+    { label: "Terms & Conditions", to: "/terms" },
+    { label: "Cookies", to: "/cookies" },
   ];
 
   return (
@@ -163,6 +171,20 @@ if (!email || !emailRegex.test(email)) {
                       <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-blue-400/40 transition-all duration-300 ease-out group-hover:w-full" />
                     </Link>
                   )}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Legal */}
+          <div className="col-span-6 md:col-span-2 flex flex-col gap-4">
+            <h3 className="text-[11.5px] font-bold tracking-[0.22em] uppercase text-white/70">Legal</h3>
+            <ul className="flex flex-col gap-[12.5px]">
+              {legalLinks.map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="group relative inline-flex text-[14px] leading-none text-slate-300/85 transition-colors duration-200 hover:text-blue-300">
+                    {label}
+                    <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-blue-400/40 transition-all duration-300 ease-out group-hover:w-full" />
+                  </Link>
                 </li>
               ))}
             </ul>
