@@ -458,7 +458,6 @@ const PricingComponent = () => {
         <div className="pricing-orb absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-purple-500/8 blur-3xl" />
         <div className="pricing-orb absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/6 blur-3xl" />
       </div>
-
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* ── Section Header ── */}
         <div ref={headingRef} className="mb-10 text-center">
@@ -637,7 +636,6 @@ const PricingComponent = () => {
           ))}
         </div>
 
-        {/* ── Trust bar ── */}
         <div className="mt-16 text-center">
           <p className="text-sm text-slate-400 dark:text-slate-500">
             🔒 Secured with 256-bit SSL encryption&nbsp;&nbsp;•&nbsp;&nbsp;Cancel anytime&nbsp;&nbsp;•&nbsp;&nbsp;No hidden fees
