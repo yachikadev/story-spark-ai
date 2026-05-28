@@ -47,6 +47,7 @@ import CommunityComponent from "./components/community/community.component";
 import ResourcesListComponent from "./components/community/resources_list.component";
 import ResourceDetailComponent from "./components/community/resource_detail.component";
 import MagicCursorComponent from "./components/magic-cursor/magic_cursor.component";
+import PostsPage from "./components/post/posts.page";
 const ProtectedRoute = ({
   element,
   allowedRoles,
@@ -133,7 +134,12 @@ function App() {
           element={
             <ProtectedRoute
               element={<DashboardLayout />}
-              allowedRoles={[USER_ROLE.ADMIN]}
+              allowedRoles={[
+                USER_ROLE.USER,
+                USER_ROLE.ADMIN,
+                USER_ROLE.SUPER_ADMIN,
+                USER_ROLE.WRITER,
+              ]}
             />
           }
         >
@@ -172,21 +178,23 @@ function App() {
             }
           />
 
-          <Route
-            path="profile"
-            element={
-              <ProtectedRoute
-                element={<ProfileComponent />}
-                allowedRoles={[
-                  USER_ROLE.USER,
-                  USER_ROLE.ADMIN,
-                  USER_ROLE.SUPER_ADMIN,
-                  USER_ROLE.WRITER,
-                ]}
-              />
-            }
-          />
+          <Route path="profile">
+            <Route
+              index
+              element={
+                <ProtectedRoute
+                  element={<ProfileComponent />}
+                  allowedRoles={[
+                    USER_ROLE.USER,
+                    USER_ROLE.ADMIN,
+                    USER_ROLE.SUPER_ADMIN,
+                    USER_ROLE.WRITER,
+                  ]}
+                />
+              }
+            />
 
+          </Route>
           <Route path="users">
             <Route
               index
@@ -367,14 +375,14 @@ function App() {
             </RootLayout>
           }
         />
-              <Route
-        path="/privacy-policy"
-        element={
-          <RootLayout>
-            <PrivacyPolicy />
-          </RootLayout>
-        }
-      />
+        <Route
+          path="/privacy-policy"
+          element={
+            <RootLayout>
+              <PrivacyPolicy />
+            </RootLayout>
+          }
+        />
         <Route
           path="/help-center"
           element={
@@ -450,6 +458,15 @@ function App() {
           element={
             <RootLayout>
               <NotFoundComponent />
+            </RootLayout>
+          }
+        />
+
+        <Route
+          path="/posts"
+          element={
+            <RootLayout>
+              <PostsPage />
             </RootLayout>
           }
         />
