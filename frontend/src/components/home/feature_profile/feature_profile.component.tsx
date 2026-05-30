@@ -5,43 +5,63 @@ import { Link } from "react-router-dom";
 
 const FeatureProfileComponent = () => {
   const { data } = useGetProfileInfoQuery(undefined);
+
+  const postsCount = data?.postsCount ?? 0;
+  const followersCount = data?.followers?.length ?? 0;
+  const followingCount = data?.following?.length ?? 0;
+
   return (
-    <section className="bg-blue-500/10 rounded-lg shadow-sm p-6 mb-8">
-      <div className="flex items-center mb-6">
-        <SSProfile
-          name={data?.name as string}
-          imageUrl={data?.profile.avatar}
-        />
-        <div className="ml-4">
-          <h3 className="text-lg font-semibold text-slate-900 dark:text-gray-300">{data?.name}</h3>
-          <p className="text-sm text-slate-600 dark:text-gray-400">{data?.email}</p>
+    <section className="bg-white dark:bg-[#111827]/40 border border-slate-200 dark:border-white/10 rounded-2xl sm:rounded-3xl p-6 mb-8 w-full box-border shadow-sm">
+      <div className="flex items-center mb-6 w-full box-border">
+        <div className="shrink-0 border border-slate-200/80 dark:border-white/10 rounded-full overflow-hidden">
+          <SSProfile
+            name={data?.name as string}
+            imageUrl={data?.profile?.avatar}
+          />
+        </div>
+        <div className="ml-4 min-w-0 flex-1">
+          <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight truncate">
+            {data?.name || "Loading User..."}
+          </h3>
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium truncate mt-0.5">
+            {data?.email || "..."}
+          </p>
         </div>
       </div>
-      <div className="border-t border-b border-slate-300 dark:border-gray-500 py-4 mb-6">
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <p className="text-2xl font-semibold text-slate-700 dark:text-gray-400">
-              {data?.postsCount}
+
+      <div className="border-t border-b border-slate-100 dark:border-white/5 py-4 mb-6 w-full box-border select-none">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center w-full box-border">
+          <div className="min-w-0">
+            <p className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight truncate">
+              {postsCount}
             </p>
-            <p className="text-sm text-slate-500 dark:text-gray-500">Posts</p>
+            <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">
+              Posts
+            </p>
           </div>
-          <div>
-            <p className="text-2xl font-semibold text-slate-700 dark:text-gray-400">
-              {data?.followers.length}
+          <div className="min-w-0">
+            <p className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight truncate">
+              {followersCount}
             </p>
-            <p className="text-sm text-slate-500 dark:text-gray-500">Followers</p>
+            <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">
+              Followers
+            </p>
           </div>
-          <div>
-            <p className="text-2xl font-semibold text-slate-700 dark:text-gray-400">
-              {data?.following.length}
+          <div className="min-w-0">
+            <p className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight truncate">
+              {followingCount}
             </p>
-            <p className="text-sm text-slate-500 dark:text-gray-500">Following</p>
+            <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">
+              Following
+            </p>
           </div>
         </div>
       </div>
-      <Link to="/stories">
-        <button className="!rounded-button w-full bg-indigo-700 text-white px-4 py-2 rounded-md hover:bg-indigo-800 cursor-pointer">
-          Generate Story <i className="fas fa-magic ml-2"></i>
+
+      <Link to="/stories" className="w-full block">
+        <button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold py-3 px-4 rounded-xl shadow-md shadow-blue-500/10 hover:shadow-lg transition-all duration-150 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 uppercase tracking-wider select-none">
+          <span>Generate Story</span>
+          <i className="fa-solid fa-wand-magic-sparkles text-xs" aria-hidden="true" />
         </button>
       </Link>
     </section>
