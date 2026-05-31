@@ -64,7 +64,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
     message: "Not Found",
-    errorMessage: [
+    errorMessages: [
       {
         path: req.originalUrl,
         message: "API Not Found",
