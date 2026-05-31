@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import NotificationComponent from "../notification/notification.component";
 import { getUserInfo } from "../../services/auth.service";
+import type { NotificationItem } from "../notification/notification.component";
 
 // Inline fallback for ThemeToggle
 const ThemeToggle = () => (
@@ -15,7 +16,7 @@ const ThemeToggle = () => (
   </button>
 );
 
-import type { NotificationItem } from "../notification/notification.component";
+
 
 // Inline fallback for useNotification
 const useNotification = () => {
