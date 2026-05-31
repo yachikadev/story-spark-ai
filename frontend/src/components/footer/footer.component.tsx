@@ -54,7 +54,7 @@ const FooterComponent = () => {
   const resourceLinks = [
     { label: "Blog",         to: "/blog"        },
     { label: "Help Center",  to: "/help"        },
-    { label: "Community",    to: "/community"   },
+    { label: "Community",    to: "/dashboard/community"   },
     { label: "Contributors", to: "/contributors"},
     { label: "Support / Feedback", to: "/contact-us" },
     { label: "GitHub Issues", to: githubIssuesUrl },
