@@ -2,6 +2,11 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import DOMPurify from "dompurify";
 import { getShortenedText, ITopicData, topicsData, getWordCount, SELECTED_TOPIC_CLASSES } from "./stories.utils";
 import { formatReadingStats } from "../../utils/story-utils";
+import {
+  createDocxBlob,
+  downloadBlob,
+  getSafeFileName,
+} from "../../utils/story-export.utils";
 import toast, { Toaster } from "react-hot-toast";
 import { useCreatePostMutation, useDeletePostMutation } from "../../redux/apis/post.api";
 import { useGetProfileInfoQuery } from "../../redux/apis/user.api";
@@ -263,75 +268,6 @@ const buildSentenceSegments = (content: string): StorySentenceSegment[] => {
   });
 
   return segments;
-};
-
-const getSafeFileName = (title: string, extension: "md" | "docx"): string => {
-  const safeTitle = (title || "story")
-    .trim()
-    .replace(/[^a-z0-9]+/gi, "_")
-    .replace(/^_+|_+$/g, "")
-    .toLowerCase();
-
-  return `${safeTitle || "story"}.${extension}`;
-};
-
-const downloadBlob = (blob: Blob, fileName: string) => {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-
-  link.href = url;
-  link.download = fileName;
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
-
-  URL.revokeObjectURL(url);
-};
-
-const escapeHtml = (value: string): string =>
-  value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-
-const createDocxBlob = ({
-  title,
-  content,
-  tag,
-  author,
-}: {
-  title: string;
-  content: string;
-  tag: string;
-  author: string;
-}): Blob => {
-  const paragraphs = content
-    .split(/\n+/)
-    .map((paragraph) => `<p>${escapeHtml(paragraph.trim())}</p>`)
-    .join("");
-
-  const html = `<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <title>${escapeHtml(title)}</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; color: #111827; }
-    h1 { color: #312e81; }
-    .meta { color: #64748b; font-size: 12px; margin-bottom: 24px; }
-  </style>
-</head>
-<body>
-  <h1>${escapeHtml(title)}</h1>
-  <div class="meta">Tag: ${escapeHtml(tag)} | Author: ${escapeHtml(author)}</div>
-  ${paragraphs}
-</body>
-</html>`;
-
-  return new Blob([html], {
-    type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document;charset=utf-8",
-  });
 };
 
 const StoryRemixModal = StoryRemix as unknown as React.ComponentType<{
@@ -1360,20 +1296,6 @@ const [, setShowRemix] = useState<boolean>(false);
     }
   };
 
-  const downloadBlob = (blob: Blob, filename: string) => {
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const getSafeFileName = (title: string, ext: string) => {
-    const cleanTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-    return `${cleanTitle || "story"}.${ext}`;
-  };
-
   const handleExportMarkdown = () => {
     if (!selectedStory) { toast.error("No story available to export."); return; }
     if (!selectedStory.content?.trim()) {toast.error("Story content is empty. Cannot export.");return;}
@@ -1386,14 +1308,6 @@ const [, setShowRemix] = useState<boolean>(false);
       const isoDate = new Date().toISOString().split("T")[0];
       const markdownContent = `---\ntitle: "${title.replace(/"/g, '\\"')}"\ntag: "${tag.replace(/"/g, '\\"')}"\nauthor: "${authorName.replace(/"/g, '\\"')}"\ndate: "${isoDate}"\n---\n\n# ${title}\n\n${content}\n`;
       const blob = new Blob([markdownContent], { type: "text/markdown;charset=utf-8;" });
-
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", `${title.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "story"}.md`);
-      document.body.appendChild(link); link.click();
-      document.body.removeChild(link); URL.revokeObjectURL(url);
-
       downloadBlob(blob, getSafeFileName(title, "md"));
 
       toast.success("Markdown downloaded!");
