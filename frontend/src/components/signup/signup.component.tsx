@@ -298,7 +298,7 @@ const SignUpComponent = () => {
                 <div className="w-full border-t border-slate-700/50"></div>
               </div>
               <div className="relative flex justify-center text-xs">
-                {/* FIXED: Changed bg-slate-800/60 to transparent with an overlay filter or solid card layer color */}
+                {/* FIXED: Changed bg-slate-800 to transparent with an overlay filter or solid card layer color */}
                 <span className="px-4 bg-slate-800 text-slate-400 font-semibold tracking-wide rounded-md">
                   SIGN UP WITH EMAIL
                 </span>
@@ -402,7 +402,7 @@ const SignUpComponent = () => {
                   type="password"
                   placeholder="Confirm your password"
                   required={!showOtpField}
-                  icon="fi fi-rr-eye"
+                  icon="fi fi-rr-lock"
                   register={register}
                   autoComplete="new-password"
                   validation={{
