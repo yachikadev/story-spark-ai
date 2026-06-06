@@ -12,6 +12,9 @@ Place at: backend/ml/train_scorer.py
 import os, random, string
 import numpy as np
 import joblib
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 import tensorflow as tf
 
 # Set random seeds for reproducible training results
@@ -21,7 +24,7 @@ random.seed(SEED)
 np.random.seed(SEED)
 tf.random.set_seed(SEED)
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
