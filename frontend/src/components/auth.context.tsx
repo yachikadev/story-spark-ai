@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserInfo, removeUserInfo, storeUserInfo } from "../services/auth.service";
+import { clearStorySession } from "../utils/storyStorage";
 
 interface User {
   id: string;
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(null);
     localStorage.removeItem("accessToken");
     removeUserInfo();
+    clearStorySession(); 
     navigate("/login");
   }, [navigate]);
 
