@@ -22,7 +22,10 @@ import { AnalyticsRouter } from "../app/modules/analytics/analytics.router";
 import { BugReportRouter } from "../app/modules/bug_report/bug_report.router";
 import { RecommendationRouter } from "../app/modules/recommendation/recommendation.router";
 import { WriterApplicationRoutes } from "../app/modules/writer_application/writer_application.route";
+import { StoryVisualizerRouter } from "../app/modules/story_visualizer/story_visualizer.router";
 import { StoryInspirationRouter } from "../app/modules/story_inspiration/story_inspiration.router";
+import { EngagementRouter } from "../app/modules/engagement/engagement.router";
+import { ChatRouter } from "../app/modules/chat/chat.router";
 
 const router = express.Router();
 
@@ -33,6 +36,10 @@ const modules = [
   },
   {
     path: "/user",
+    router: UserRouter,
+  },
+  {
+    path: "/users",
     router: UserRouter,
   },
   {
@@ -100,6 +107,10 @@ const modules = [
     router: StoryInspirationRouter,
   },
   {
+    path: "/engagement",
+    router: EngagementRouter,
+  },
+  {
     path: "/contact",
     router: ContactRoutes,
   },
@@ -122,6 +133,10 @@ const modules = [
   {
     path: "/ai-editor",
     router: AIEditorRouter,
+  },
+  {
+    path: "/chat",
+    router: ChatRouter,
   },
 ];
 
