@@ -1145,7 +1145,10 @@ html.dark .contact-input::placeholder { color: rgba(148, 163, 184, 0.78); }
   .magic-cursor-sparkle,
   .contact-col-left,
   .contact-col-right,
-  .contact-badge {
+  .contact-badge,
+  .completed-badge,
+  .completed-badge:hover,
+  .completed-badge:focus-visible {
     transform: none !important;
     box-shadow: none !important;
     animation: none !important;
@@ -1154,7 +1157,8 @@ html.dark .contact-input::placeholder { color: rgba(148, 163, 184, 0.78); }
   .magic-cursor-sparkle,
   .magic-cursor-dot,
   .magic-cursor-glow,
-  .contact-form-glow-ring {
+  .contact-form-glow-ring,
+  .completed-badge::before {
     display: none !important;
   }
 
@@ -1367,16 +1371,19 @@ html.dark .contact-input::placeholder { color: rgba(148, 163, 184, 0.78); }
               background-color 0.3s ease !important;
 }
 
-.completed-badge:hover {
+.completed-badge:hover,
+.completed-badge:focus-visible {
   transform: translateY(-5px) scale(1.035) !important;
   border-color: rgba(234, 179, 8, 0.3) !important;
   box-shadow: 
     0 15px 30px -5px rgba(234, 179, 8, 0.12),
     0 0 25px -5px rgba(245, 158, 11, 0.15),
     inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
+  outline: none;
 }
 
-html.dark .completed-badge:hover {
+html.dark .completed-badge:hover,
+html.dark .completed-badge:focus-visible {
   border-color: rgba(234, 179, 8, 0.4) !important;
   box-shadow: 
     0 20px 35px -8px rgba(234, 179, 8, 0.22),
@@ -1405,7 +1412,8 @@ html.dark .completed-badge:hover {
   z-index: 1;
 }
 
-.completed-badge:hover::before {
+.completed-badge:hover::before,
+.completed-badge:focus-visible::before {
   left: 150%;
   transition: left 0.8s ease-in-out;
 }

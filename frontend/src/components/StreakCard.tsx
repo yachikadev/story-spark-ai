@@ -20,9 +20,17 @@ const StreakCard: React.FC<StreakCardProps> = ({ streak, isLoading }) => {
     if (!lastCelebrated) {
       shouldTrigger = true;
     } else {
-      const [prevStreak, prevTotalDays] = lastCelebrated.split("-").map(Number);
-      if (currentStreak > prevStreak || totalWritingDays > prevTotalDays) {
+      const parts = lastCelebrated.split("-").map(Number);
+      const prevStreak = parts[0];
+      const prevTotalDays = parts[1];
+
+      if (Number.isFinite(prevStreak) && Number.isFinite(prevTotalDays)) {
+        if (currentStreak > prevStreak || totalWritingDays > prevTotalDays) {
+          shouldTrigger = true;
+        }
+      } else {
         shouldTrigger = true;
+        localStorage.removeItem("last_celebrated_streak");
       }
     }
 

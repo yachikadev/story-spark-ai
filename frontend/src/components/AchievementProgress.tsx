@@ -15,11 +15,11 @@ const AchievementProgress: React.FC<AchievementProgressProps> = ({
   const [animatedWidth, setAnimatedWidth] = useState(0);
 
   useEffect(() => {
-    // Start animation on mount or when percentage changes
-    const timer = setTimeout(() => {
+    // Start animation on mount or when percentage changes on the next paint
+    const animationFrameId = requestAnimationFrame(() => {
       setAnimatedWidth(percentage);
-    }, 50);
-    return () => clearTimeout(timer);
+    });
+    return () => cancelAnimationFrame(animationFrameId);
   }, [percentage]);
 
   return (

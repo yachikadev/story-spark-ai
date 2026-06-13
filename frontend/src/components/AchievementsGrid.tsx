@@ -23,13 +23,22 @@ const AchievementsGrid: React.FC<AchievementsGridProps> = ({
     if (unlockedBadges.length === 0) return;
 
     const celebratedBadgesStr = localStorage.getItem("celebrated_badges");
-    const celebratedBadges: string[] = celebratedBadgesStr
-      ? JSON.parse(celebratedBadgesStr)
-      : [];
+    let celebratedBadges: string[] = [];
+    if (celebratedBadgesStr) {
+      try {
+        const parsed = JSON.parse(celebratedBadgesStr);
+        celebratedBadges = Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        console.error("Error parsing celebrated_badges from localStorage:", e);
+        localStorage.removeItem("celebrated_badges");
+      }
+    }
 
     const newlyUnlocked = unlockedBadges.filter(
       (ach) => !celebratedBadges.includes(ach.id)
     );
+
+    let animationFrameId: number;
 
     if (newlyUnlocked.length > 0) {
       // Trigger a beautiful, premium, double-sided cascade of confetti!
@@ -53,7 +62,7 @@ const AchievementsGrid: React.FC<AchievementsGridProps> = ({
         });
 
         if (Date.now() < end) {
-          requestAnimationFrame(frame);
+          animationFrameId = requestAnimationFrame(frame);
         }
       };
 
@@ -66,6 +75,12 @@ const AchievementsGrid: React.FC<AchievementsGridProps> = ({
       ];
       localStorage.setItem("celebrated_badges", JSON.stringify(updatedCelebrated));
     }
+
+    return () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [achievements, isLoading]);
 
 
