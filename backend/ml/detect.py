@@ -51,6 +51,31 @@ FEATURE_KEYS = [
     "blocked_word_count",
 ]
 
+def _validate_dict_window(window: list, label: str) -> str | None:
+    missing_keys = [
+        i for i, s in enumerate(window)
+        if not all(k in s for k in FEATURE_KEYS)
+    ]
+    if missing_keys:
+        return f"{label}: entries at positions {missing_keys} are missing required keys"
+
+    non_numeric = [
+        i for i, s in enumerate(window)
+        if not all(isinstance(s.get(k, None), (int, float)) for k in FEATURE_KEYS)
+    ]
+    if non_numeric:
+        return f"{label}: entries at positions {non_numeric} have non-numeric values"
+    return None
+
+def _validate_list_window(window: list, label: str) -> str | None:
+    wrong_len = [
+        i for i, s in enumerate(window)
+        if len(s) != N_FEATURES
+    ]
+    if wrong_len:
+        return f"{label}: entries at positions {wrong_len} must have {N_FEATURES} values"
+    return None
+
 def _validate_session(session: list, idx: int | None = None) -> str | None:
     """
     Validate a single session before processing.
@@ -67,33 +92,14 @@ def _validate_session(session: list, idx: int | None = None) -> str | None:
         return f"{label}: needs at least {SEQ_LEN} entries, got {len(session)}"
 
     window = session[-SEQ_LEN:]
+    first_entry = window[0]
 
-    if isinstance(window[0], dict):
-        missing_keys = [
-            i for i, s in enumerate(window)
-            if not all(k in s for k in FEATURE_KEYS)
-        ]
-        if missing_keys:
-            return f"{label}: entries at positions {missing_keys} are missing required keys"
-
-        non_numeric = [
-            i for i, s in enumerate(window)
-            if not all(isinstance(s.get(k, None), (int, float)) for k in FEATURE_KEYS)
-        ]
-        if non_numeric:
-            return f"{label}: entries at positions {non_numeric} have non-numeric values"
-
-    elif isinstance(window[0], (list, np.ndarray)):
-        wrong_len = [
-            i for i, s in enumerate(window)
-            if len(s) != N_FEATURES
-        ]
-        if wrong_len:
-            return f"{label}: entries at positions {wrong_len} must have {N_FEATURES} values"
+    if isinstance(first_entry, dict):
+        return _validate_dict_window(window, label)
+    elif isinstance(first_entry, (list, np.ndarray)):
+        return _validate_list_window(window, label)
     else:
-        return f"{label}: entries must be dicts or lists, got {type(window[0]).__name__}"
-
-    return None
+        return f"{label}: entries must be dicts or lists, got {type(first_entry).__name__}"
 
 def load_ml_assets_into_cache():
     """
@@ -212,6 +218,40 @@ def _get_unique_suggestion(feature: str) -> str:
     return chosen
 
 
+def _session_to_numpy(window: list) -> np.ndarray:
+    if isinstance(window[0], dict):
+        session_raw = np.array(
+            [[s[k] for k in FEATURE_KEYS] for s in window],
+            dtype=np.float32,
+        )
+    else:
+        session_raw = np.array(window, dtype=np.float32)
+
+    if session_raw.shape != (SEQ_LEN, N_FEATURES):
+        raise ValueError(
+            f"Expected session shape ({SEQ_LEN}, {N_FEATURES}), "
+            f"got {session_raw.shape}. Check FEATURE_KEYS order."
+        )
+    return session_raw
+
+def _calculate_confidence(anomaly_score: float, threshold: float, is_stuck: bool) -> str:
+    if not is_stuck:
+        return "N/A"
+    ratio = anomaly_score / threshold
+    if ratio > 2.0:
+        return "High"
+    elif ratio > 1.2:
+        return "Medium"
+    else:
+        return "Low"
+
+def _run_prediction(model, scaler, session_raw: np.ndarray) -> tuple[np.ndarray, np.ndarray, float]:
+    seq_scaled = scaler.transform(session_raw).reshape(1, SEQ_LEN, N_FEATURES)
+    reconstructed = model.predict(seq_scaled, verbose=0)
+    anomaly_score = float(np.mean((seq_scaled - reconstructed) ** 2))
+    return seq_scaled, reconstructed, anomaly_score
+
+
 # ── Core detect function ──────────────────────────────────────────────────────
 
 def detect(session: list) -> dict:
@@ -242,36 +282,11 @@ def detect(session: list) -> dict:
     threshold = assets["threshold"]
 
     window = session[-SEQ_LEN:]
-
-    if isinstance(window[0], dict):
-        session_raw = np.array(
-            [[s[k] for k in FEATURE_KEYS] for s in window],
-            dtype=np.float32,
-        )
-    else:
-        session_raw = np.array(window, dtype=np.float32)
-
-    if session_raw.shape != (SEQ_LEN, N_FEATURES):
-        raise ValueError(
-            f"Expected session shape ({SEQ_LEN}, {N_FEATURES}), "
-            f"got {session_raw.shape}. Check FEATURE_KEYS order."
-        )
-
-    seq_scaled    = scaler.transform(session_raw).reshape(1, SEQ_LEN, N_FEATURES)
-    reconstructed = model.predict(seq_scaled, verbose=0)
-    anomaly_score = float(np.mean((seq_scaled - reconstructed) ** 2))
+    session_raw = _session_to_numpy(window)
+    seq_scaled, reconstructed, anomaly_score = _run_prediction(model, scaler, session_raw)
 
     is_stuck = anomaly_score > threshold
-    ratio    = anomaly_score / threshold
-
-    if not is_stuck:
-        confidence = "N/A"
-    elif ratio > 2.0:
-        confidence = "High"
-    elif ratio > 1.2:
-        confidence = "Medium"
-    else:
-        confidence = "Low"
+    confidence = _calculate_confidence(anomaly_score, threshold, is_stuck)
 
     return {
         "is_stuck":     is_stuck,
@@ -387,36 +402,11 @@ def batch_detect(sessions: list[list]) -> list[dict]:
 
         try:
             window = session[-SEQ_LEN:]
-
-            if isinstance(window[0], dict):
-                session_raw = np.array(
-                    [[s[k] for k in FEATURE_KEYS] for s in window],
-                    dtype=np.float32,
-                )
-            else:
-                session_raw = np.array(window, dtype=np.float32)
-
-            if session_raw.shape != (SEQ_LEN, N_FEATURES):
-                raise ValueError(
-                    f"Expected shape ({SEQ_LEN}, {N_FEATURES}), "
-                    f"got {session_raw.shape}"
-                )
-
-            seq_scaled    = scaler.transform(session_raw).reshape(1, SEQ_LEN, N_FEATURES)
-            reconstructed = model.predict(seq_scaled, verbose=0)
-            anomaly_score = float(np.mean((seq_scaled - reconstructed) ** 2))
+            session_raw = _session_to_numpy(window)
+            seq_scaled, reconstructed, anomaly_score = _run_prediction(model, scaler, session_raw)
 
             is_stuck = anomaly_score > threshold
-            ratio    = anomaly_score / threshold
-
-            if not is_stuck:
-                confidence = "N/A"
-            elif ratio > 2.0:
-                confidence = "High"
-            elif ratio > 1.2:
-                confidence = "Medium"
-            else:
-                confidence = "Low"
+            confidence = _calculate_confidence(anomaly_score, threshold, is_stuck)
 
             results.append({
                 "index":         idx,
