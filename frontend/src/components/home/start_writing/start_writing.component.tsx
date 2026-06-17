@@ -23,7 +23,7 @@ const StartWritingComponent = () => {
               with our AI-powered platform.
             </p>
             <Link to="/stories">
-              <button className="motion-cta rounded-full inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 text-lg font-bold tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 cursor-pointer group/btn">
+              <button className="motion-cta rounded-full inline-flex items-center justify-center bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-10 py-4 text-lg font-bold tracking-wide shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 cursor-pointer group/btn">
                 GET STARTED FREE
                 <i className="motion-icon fa-solid fa-wand-magic-sparkles ml-3 group-hover/btn:rotate-12"></i>
               </button>

@@ -30,7 +30,7 @@ const ExploreViewListComponent: React.FC<IExploreViewListComponentProps> = ({
             className="animate-pulse bg-[#f8fafc]/90 border border-slate-200/60 shadow-lg rounded-[2.5rem] overflow-hidden flex flex-col h-[520px] dark:bg-slate-900/40 dark:border-white/5 dark:shadow-2xl"
           >
             <div className="relative aspect-video bg-slate-200/80 dark:bg-slate-800/50">
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-100 to-transparent dark:from-[#03050C] opacity-60"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-slate-100 to-transparent dark:from-[#03050C] opacity-60"></div>
               <div className="absolute top-6 left-6 h-7 w-20 bg-slate-300/50 rounded-full border border-slate-300/30 dark:bg-blue-500/10 dark:border-blue-500/10" />
             </div>
             <div className="p-6 flex-1 flex flex-col">
@@ -71,7 +71,7 @@ const ExploreViewListComponent: React.FC<IExploreViewListComponentProps> = ({
                   className="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-50 via-transparent to-transparent opacity-100 pointer-events-none dark:from-slate-900/90 dark:via-transparent dark:to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-gray-50 via-transparent to-transparent opacity-100 pointer-events-none dark:from-slate-900/90 dark:via-transparent dark:to-transparent"></div>
 
                 <div className="absolute top-4 right-4 z-10" onClick={(e) => e.stopPropagation()}>
                   <BookmarkButton

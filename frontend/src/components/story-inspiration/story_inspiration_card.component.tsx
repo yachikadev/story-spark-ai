@@ -136,7 +136,7 @@ const StoryInspirationCard: React.FC<
           absolute inset-0 opacity-0
           group-hover:opacity-100
           transition duration-700
-          bg-gradient-to-br ${config.gradient}
+          bg-linear-to-br ${config.gradient}
           blur-3xl
         `}
       />
@@ -162,7 +162,7 @@ const StoryInspirationCard: React.FC<
           <div
             className="
               absolute inset-0
-              bg-gradient-to-t
+              bg-linear-to-t
               from-black/80
               via-black/20
               to-transparent
@@ -310,7 +310,7 @@ const StoryInspirationCard: React.FC<
                         ${
                           active
                             ? `
-                              bg-gradient-to-r ${config.gradient}
+                              bg-linear-to-r ${config.gradient}
                               text-white
                             `
                             : `
@@ -350,7 +350,7 @@ const StoryInspirationCard: React.FC<
           className={`
             mt-8 w-full
             rounded-2xl py-4
-            bg-gradient-to-r ${config.gradient}
+            bg-linear-to-r ${config.gradient}
             text-white font-semibold
             transition-all duration-300
             hover:scale-[1.02]

@@ -78,7 +78,7 @@ const HelpCategories: FC<HelpCategoriesProps> = ({ categories }) => {
                 <div
                   className="
                     w-16 h-16 rounded-2xl
-                    bg-gradient-to-br from-blue-500/20 to-indigo-500/20
+                    bg-linear-to-br from-blue-500/20 to-indigo-500/20
                     border border-blue-500/20
                     flex items-center justify-center
                     text-2xl text-blue-400
@@ -119,7 +119,7 @@ const HelpCategories: FC<HelpCategoriesProps> = ({ categories }) => {
                 </div>
               </div>
 
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </div>

@@ -359,7 +359,7 @@ const PostDetailsComponent = () => {
                 </button>
                 <button
                   onClick={() => setShowTimeline(true)}
-                  className="flex items-center gap-1.5 px-4 py-2 text-sm bg-gradient-to-r from-purple-500 to-indigo-600 text-white hover:opacity-90 rounded-lg transition-all active:scale-95 cursor-pointer font-semibold shadow-md"
+                  className="flex items-center gap-1.5 px-4 py-2 text-sm bg-linear-to-r from-purple-500 to-indigo-600 text-white hover:opacity-90 rounded-lg transition-all active:scale-95 cursor-pointer font-semibold shadow-md"
                 >
                   ✨ Story Timeline & History
                 </button>
@@ -397,7 +397,7 @@ const PostDetailsComponent = () => {
                   <button
                     onClick={handleSaveChanges}
                     disabled={isUpdating}
-                    className="px-4 py-2 rounded bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 font-semibold text-sm cursor-pointer disabled:opacity-50"
+                    className="px-4 py-2 rounded bg-linear-to-r from-blue-500 to-indigo-600 text-white hover:opacity-90 font-semibold text-sm cursor-pointer disabled:opacity-50"
                   >
                     {isUpdating ? "Saving Iteration..." : "Save Iteration"}
                   </button>
@@ -543,7 +543,7 @@ const PostDetailsComponent = () => {
         <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-[#0f172a]/95 backdrop-blur-xl border-l border-slate-700/60 shadow-2xl p-6 overflow-y-auto text-white animate-slide-in flex flex-col">
           <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-800">
             <div>
-              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-blue-400 flex items-center gap-2">
+              <h3 className="text-xl font-bold bg-clip-text text-transparent bg-linear-to-r from-purple-300 to-blue-400 flex items-center gap-2">
                 ✨ Story Timeline
               </h3>
               <p className="text-[11px] text-slate-400 mt-1">Chronological creative iterations</p>
@@ -591,7 +591,7 @@ const PostDetailsComponent = () => {
                           <button
                             onClick={() => handleRestore(v._id)}
                             disabled={isRestoring}
-                            className="px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-[10px] rounded transition-all active:scale-95 cursor-pointer disabled:opacity-50"
+                            className="px-3 py-1 bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-[10px] rounded transition-all active:scale-95 cursor-pointer disabled:opacity-50"
                           >
                             Restore
                           </button>

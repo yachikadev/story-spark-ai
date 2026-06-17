@@ -62,7 +62,7 @@ const ContributorsComponent = () => {
             ✨ Open Source Community
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
             Contributors
           </h1>
 

@@ -22,7 +22,7 @@ const HelpSearchBar: FC<HelpSearchBarProps> = ({
       <label htmlFor="help-search" className="sr-only">
         Search help center
       </label>
-      <div className="relative before:absolute before:inset-0 before:-z-10 before:bg-gradient-to-r before:from-purple-500/20 before:via-indigo-500/20 before:to-blue-500/20 before:blur-xl before:rounded-2xl">
+      <div className="relative before:absolute before:inset-0 before:-z-10 before:bg-linear-to-r before:from-purple-500/20 before:via-indigo-500/20 before:to-blue-500/20 before:blur-xl before:rounded-2xl">
         <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
           <i className="fas fa-search text-gray-400 dark:text-gray-300" aria-hidden="true"></i>
         </div>

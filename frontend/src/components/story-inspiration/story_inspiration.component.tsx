@@ -93,7 +93,7 @@ const StoryInspirationComponent: React.FC = () => {
               transition-all duration-300
             "
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-500 flex items-center justify-center text-white shadow-lg">
+            <div className="w-9 h-9 rounded-xl bg-linear-to-br from-indigo-500 to-blue-500 flex items-center justify-center text-white shadow-lg">
               <i className="fas fa-arrow-left text-sm group-hover:-translate-x-0.5 transition-transform" />
             </div>
 
@@ -126,7 +126,7 @@ const StoryInspirationComponent: React.FC = () => {
         >
           {/* Glow */}
           <div className="absolute inset-0 flex items-center justify-center -z-10">
-            <div className="w-[900px] h-[450px] rounded-full bg-gradient-to-r from-indigo-500/20 via-blue-500/15 to-purple-500/20 blur-[130px]" />
+            <div className="w-[900px] h-[450px] rounded-full bg-linear-to-r from-indigo-500/20 via-blue-500/15 to-purple-500/20 blur-[130px]" />
           </div>
 
           {/* Badge */}
@@ -163,7 +163,7 @@ const StoryInspirationComponent: React.FC = () => {
 
             <span className="
               block text-transparent bg-clip-text
-              bg-gradient-to-r
+              bg-linear-to-r
               from-indigo-600
               via-blue-600
               to-purple-600
@@ -199,7 +199,7 @@ const StoryInspirationComponent: React.FC = () => {
               }
               className="
                 group px-8 py-4 rounded-2xl
-                bg-gradient-to-r from-indigo-600 to-blue-600
+                bg-linear-to-r from-indigo-600 to-blue-600
                 text-white font-bold
                 shadow-2xl shadow-indigo-500/25
                 hover:scale-[1.03]
@@ -265,7 +265,7 @@ const StoryInspirationComponent: React.FC = () => {
                 <div className="absolute top-0 right-0 w-28 h-28 bg-indigo-500/10 blur-3xl rounded-full" />
 
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center mx-auto mb-5 shadow-xl shadow-indigo-500/25">
+                  <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center mx-auto mb-5 shadow-xl shadow-indigo-500/25">
                     <i className={`fas ${item.icon} text-lg`} />
                   </div>
 
@@ -317,7 +317,7 @@ const StoryInspirationComponent: React.FC = () => {
 
               <div className="
                 px-5 py-4 rounded-2xl
-                bg-gradient-to-r from-indigo-500/10 to-blue-500/10
+                bg-linear-to-r from-indigo-500/10 to-blue-500/10
                 border border-indigo-500/10
                 min-w-[220px]
               ">
@@ -342,7 +342,7 @@ const StoryInspirationComponent: React.FC = () => {
               focus-within:border-indigo-500/40
               transition-all duration-300
             ">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/20">
+              <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center shadow-lg shadow-indigo-500/20">
                 <i className="fas fa-search" />
               </div>
 
@@ -397,7 +397,7 @@ const StoryInspirationComponent: React.FC = () => {
                       ${
                         active
                           ? `
-                            bg-gradient-to-r
+                            bg-linear-to-r
                             from-indigo-600 to-blue-600
                             text-white
                             border-transparent
@@ -449,7 +449,7 @@ const StoryInspirationComponent: React.FC = () => {
               shadow-2xl
             "
           >
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center mx-auto shadow-2xl shadow-indigo-500/25">
+            <div className="w-24 h-24 rounded-full bg-linear-to-br from-indigo-500 to-blue-500 text-white flex items-center justify-center mx-auto shadow-2xl shadow-indigo-500/25">
               <i className="fas fa-search-minus text-3xl" />
             </div>
 
@@ -469,7 +469,7 @@ const StoryInspirationComponent: React.FC = () => {
               }}
               className="
                 mt-10 px-8 py-4 rounded-2xl
-                bg-gradient-to-r from-indigo-600 to-blue-600
+                bg-linear-to-r from-indigo-600 to-blue-600
                 text-white font-bold
                 hover:scale-[1.03]
                 transition-all duration-300
@@ -492,7 +492,7 @@ const StoryInspirationComponent: React.FC = () => {
             relative overflow-hidden
             rounded-[3rem]
             border border-white/60 dark:border-white/10
-            bg-gradient-to-br
+            bg-linear-to-br
             from-indigo-600
             via-blue-600
             to-purple-700

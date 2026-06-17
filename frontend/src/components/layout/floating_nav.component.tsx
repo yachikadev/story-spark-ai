@@ -205,7 +205,7 @@ const FloatingNavComponent: React.FC = () => {
                     <Link
                       to="/signup"
                       onClick={() => setIsMoreOpen(false)}
-                      className="flex items-center justify-center gap-2 p-3 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 dark:from-blue-600 dark:to-indigo-600 dark:hover:from-blue-500 dark:hover:to-indigo-500 text-white shadow-lg shadow-indigo-600/15 dark:shadow-blue-600/10 transition-all text-[14px] font-semibold"
+                      className="flex items-center justify-center gap-2 p-3 rounded-xl bg-linear-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 dark:from-blue-600 dark:to-indigo-600 dark:hover:from-blue-500 dark:hover:to-indigo-500 text-white shadow-lg shadow-indigo-600/15 dark:shadow-blue-600/10 transition-all text-[14px] font-semibold"
                     >
                       <UserPlus size={16} />
                       <span>Sign Up</span>

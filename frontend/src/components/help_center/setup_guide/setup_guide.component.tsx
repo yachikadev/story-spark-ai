@@ -37,7 +37,7 @@ const SetupGuide: FC<SetupGuideProps> = ({ steps }) => {
 
       <div className="relative max-w-4xl mx-auto">
         <div
-          className="absolute left-6 top-0 bottom-0 hidden md:block w-px bg-gradient-to-b from-indigo-500/40 via-blue-500/20 to-transparent"
+          className="absolute left-6 top-0 bottom-0 hidden md:block w-px bg-linear-to-b from-indigo-500/40 via-blue-500/20 to-transparent"
           aria-hidden="true"
         />
 
@@ -98,7 +98,7 @@ const SetupGuide: FC<SetupGuideProps> = ({ steps }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.45, delay: 0.1 }}
         viewport={{ once: true }}
-        className="mt-12 overflow-hidden rounded-3xl border border-indigo-200 bg-gradient-to-r from-indigo-50 via-white to-blue-50 p-6 shadow-sm dark:border-indigo-500/20 dark:from-indigo-950/40 dark:via-slate-900 dark:to-blue-950/30 max-w-4xl mx-auto"
+        className="mt-12 overflow-hidden rounded-3xl border border-indigo-200 bg-linear-to-r from-indigo-50 via-white to-blue-50 p-6 shadow-sm dark:border-indigo-500/20 dark:from-indigo-950/40 dark:via-slate-900 dark:to-blue-950/30 max-w-4xl mx-auto"
       >
         <div className="flex flex-col sm:flex-row items-start gap-5">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-500/10 text-indigo-600 shadow-sm dark:text-indigo-300 flex-shrink-0">

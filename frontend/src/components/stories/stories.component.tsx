@@ -621,7 +621,7 @@ const StoriesComponent = () => {
         <div className="mt-11">
           <h1 className="text-slate-900 dark:text-gray-300 text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-12">
             ✨ {text.titleStart}{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-blue-400">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-300 to-blue-400">
               {text.titleAccent}
             </span>{" "}
             ✨
@@ -843,7 +843,7 @@ const StoriesComponent = () => {
         disabled={loading || isOverLimit}
         aria-busy={loading}
         aria-disabled={loading || isOverLimit}
-        className={`rounded-lg bg-gradient-to-r from-blue-400 to-indigo-500 text-gray-200 px-6 py-3 font-semibold ${
+        className={`rounded-lg bg-linear-to-r from-blue-400 to-indigo-500 text-gray-200 px-6 py-3 font-semibold ${
           loading || isOverLimit
             ? "opacity-50 cursor-not-allowed"
             : "cursor-pointer hover:shadow-lg hover:shadow-indigo-500/50 hover:scale-105"
@@ -979,7 +979,7 @@ const StoriesComponent = () => {
               <div className="flex flex-col gap-3">
                 <Link
                   to="/login"
-                  className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-indigo-500/25"
+                  className="w-full bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-lg hover:shadow-indigo-500/25"
                 >
                   {text.login}
                 </Link>
