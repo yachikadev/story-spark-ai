@@ -241,7 +241,7 @@ export default function Contact() {
                     aria-label={`${label}: ${value}`}
                     className={`contact-channel-link group flex items-center gap-3.5 rounded-2xl border border-white/[0.07] bg-white/[0.03] px-4 py-3.5 backdrop-blur-sm ${hoverBorder}`}
                   >
-                    <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${color} ${iconColor}`}>
+                    <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${color} ${iconColor}`}>
                       <Icon className="h-4 w-4" aria-hidden="true" />
                     </span>
                     <span className="min-w-0 flex-1">
@@ -362,7 +362,7 @@ export default function Contact() {
                     <span aria-hidden="true" className="contact-btn-gradient absolute inset-0" />
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.12] to-transparent transition-transform duration-700 group-hover:translate-x-full"
+                      className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/[0.12] to-transparent transition-transform duration-700 group-hover:translate-x-full"
                     />
                     <span className="relative flex items-center gap-2.5">
                       {loading ? (

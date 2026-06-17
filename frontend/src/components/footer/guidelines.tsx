@@ -51,7 +51,7 @@ const Guidelines = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-slate-100 text-slate-900 px-6 py-14 transition-colors duration-300 dark:from-[#0b1329] dark:to-[#111827] dark:text-white">
+        <div className="min-h-screen bg-linear-to-b from-white to-slate-100 text-slate-900 px-6 py-14 transition-colors duration-300 dark:from-[#0b1329] dark:to-[#111827] dark:text-white">
             <div className="max-w-6xl mx-auto">
 
                 <div className="text-center mb-14">

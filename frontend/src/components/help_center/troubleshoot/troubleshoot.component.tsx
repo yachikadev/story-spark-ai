@@ -72,7 +72,7 @@ const Troubleshoot: FC<TroubleshootProps> = ({ items }) => {
               "
             >
               <div className="absolute -top-10 -right-10 w-36 h-36 bg-orange-500/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-0 left-0 h-[2px] w-full bg-linear-to-r from-orange-500 via-amber-500 to-yellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <div className="relative z-10 p-7">
                 <div className="flex flex-col sm:flex-row items-start gap-5 mb-6">
@@ -80,7 +80,7 @@ const Troubleshoot: FC<TroubleshootProps> = ({ items }) => {
                     className="
                       flex items-center justify-center
                       w-14 h-14 rounded-2xl
-                      bg-gradient-to-br from-orange-500/20 to-amber-500/20
+                      bg-linear-to-br from-orange-500/20 to-amber-500/20
                       border border-orange-500/20
                       text-orange-400 text-xl
                       shrink-0

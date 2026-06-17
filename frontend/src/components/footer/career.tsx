@@ -93,7 +93,7 @@ const Career = () => {
             </div>
             <h1 className="max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight text-slate-950 sm:text-6xl dark:text-white">
               Build the future of{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-blue-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
                 AI-powered storytelling
               </span>
             </h1>
@@ -104,7 +104,7 @@ const Career = () => {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#open-roles"
-                className="motion-cta inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-500/30"
+                className="motion-cta inline-flex items-center justify-center gap-2 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-500/30"
               >
                 View open roles
                 <ArrowRight size={18} />
@@ -119,7 +119,7 @@ const Career = () => {
           </div>
 
           <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute -inset-8 -z-10 rounded-full bg-gradient-to-tr from-blue-400/20 to-indigo-500/20 blur-3xl" />
+            <div className="absolute -inset-8 -z-10 rounded-full bg-linear-to-tr from-blue-400/20 to-indigo-500/20 blur-3xl" />
             <div className="motion-card rounded-[2rem] border border-slate-200/80 bg-white/75 p-6 shadow-2xl shadow-blue-950/10 backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/65 dark:shadow-black/30 sm:p-8">
               <div className="mb-8 flex items-center justify-between">
                 <div className="rounded-2xl border border-blue-400/20 bg-blue-500/10 p-4 text-blue-600 dark:text-blue-300">
@@ -252,7 +252,7 @@ const Career = () => {
       </section>
 
       <section className="px-6 pb-20 sm:pb-24">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 p-8 text-white shadow-2xl shadow-indigo-950/25 sm:p-12">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-linear-to-r from-blue-700 via-indigo-700 to-slate-900 p-8 text-white shadow-2xl shadow-indigo-950/25 sm:p-12">
           <div className="grid gap-10 lg:grid-cols-[0.84fr_1fr] lg:items-center">
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-blue-200">

@@ -598,7 +598,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
         <div className="col-span-1 lg:col-span-8 flex flex-col">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
             <div>
-              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-blue-400 mb-2">
+              <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-purple-300 to-blue-400 mb-2">
                 {selectedStory?.title}
               </h1>
               <div className="flex flex-wrap gap-2">
@@ -797,7 +797,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
                                   <i className="fa-solid fa-check"></i> Applied to Story
                                 </span>
                               ) : (
-                                <button type="button" onClick={() => handleApplyEnding(currentEndingData)} className="rounded-lg px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-md hover:shadow-purple-500/20">
+                                <button type="button" onClick={() => handleApplyEnding(currentEndingData)} className="rounded-lg px-4 py-2 bg-linear-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold text-sm transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-md hover:shadow-purple-500/20">
                                   Apply to Story
                                 </button>
                               )}
@@ -823,7 +823,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
                   </div>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-8 bg-slate-900/20 border border-dashed border-slate-700/40 rounded-xl">
-                    <button type="button" onClick={handleGenerateAlternateEndings} className="rounded-xl px-6 py-3 bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 flex items-center gap-2 cursor-pointer">
+                    <button type="button" onClick={handleGenerateAlternateEndings} className="rounded-xl px-6 py-3 bg-linear-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30 flex items-center gap-2 cursor-pointer">
                       Generate Alternate Endings
                     </button>
                     <p className="text-xs text-slate-400 mt-3 text-center max-w-sm px-4 leading-relaxed">
@@ -839,7 +839,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
         {/* ── Right column: Preview ── */}
         <div className="col-span-1 lg:col-span-4">
           <div className="mb-5">
-            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-300 to-blue-400">
+            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-purple-300 to-blue-400">
               Preview
             </h1>
           </div>

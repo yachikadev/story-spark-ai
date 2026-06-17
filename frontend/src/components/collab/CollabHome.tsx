@@ -70,7 +70,7 @@ export default function CollabHome() {
         </div>
         <div className="text-center mb-12">
           <div className="text-6xl mb-4">✍️</div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl font-bold bg-linear-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-3">
             Story Collab Mode
           </h1>
           <p className="text-slate-600 dark:text-white/50 text-lg">
@@ -90,7 +90,7 @@ export default function CollabHome() {
           <button
             onClick={createRoom}
             disabled={isCreating}
-            className="w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 disabled:opacity-50 text-white font-semibold text-lg transition-all shadow-lg shadow-indigo-500/20"
+            className="w-full py-4 rounded-2xl bg-linear-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 disabled:opacity-50 text-white font-semibold text-lg transition-all shadow-lg shadow-indigo-500/20"
           >
             {isCreating ? "Creating room..." : "✨ Create a New Story Room"}
           </button>

@@ -53,11 +53,11 @@ export default function CommunityCardsPreview() {
           {genres.map((genre, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#0f172a] to-[#111827] p-8 transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10"
+              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-[#0f172a] to-[#111827] p-8 transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10"
             >
               <div className="absolute -top-24 right-0 w-40 h-40 bg-blue-500/10 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-              <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20 mb-8 group-hover:scale-110 transition-transform duration-300">
+              <div className="relative z-10 w-16 h-16 rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20 mb-8 group-hover:scale-110 transition-transform duration-300">
                 {genre.icon}
               </div>
 

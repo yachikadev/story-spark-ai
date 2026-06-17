@@ -126,7 +126,7 @@ const CookieConsentBanner: FC = () => {
         <div className="flex flex-col gap-3 xl:w-[320px]">
           <button
             onClick={handleAcceptAll}
-            className="rounded-3xl bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:from-blue-400 hover:to-indigo-400"
+            className="rounded-3xl bg-linear-to-r from-blue-500 to-indigo-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:from-blue-400 hover:to-indigo-400"
           >
             Accept all cookies
           </button>

@@ -157,7 +157,7 @@ const PaymentComponent = () => {
             {/* Razorpay Button */}
             <button
               onClick={handlePayment}
-              className="motion-cta inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:shadow-cyan-500/30"
+              className="motion-cta inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-cyan-500 to-blue-600 px-5 py-4 text-base font-semibold text-white shadow-lg shadow-cyan-500/20 transition hover:shadow-cyan-500/30"
             >
               <ShieldCheck size={18} />
               Pay with Razorpay

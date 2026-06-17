@@ -82,7 +82,7 @@ const HelpSidebar = () => {
 
             <div className="relative z-10">
               <div className="mb-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-200 dark:border-blue-500/20 mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-blue-500/10 to-indigo-500/10 border border-blue-200 dark:border-blue-500/20 mb-4">
                   <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                   <span className="text-xs font-semibold tracking-wide uppercase text-blue-700 dark:text-blue-300">
                     Quick Navigation
@@ -103,21 +103,21 @@ const HelpSidebar = () => {
                       onClick={() => scrollToSection(section.id)}
                       className={`relative group w-full flex items-center gap-4 px-4 py-4 rounded-2xl transition-all duration-300 overflow-hidden border ${
                         isActive
-                          ? "border-blue-300 dark:border-blue-500/30 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/15 dark:to-indigo-500/15"
+                          ? "border-blue-300 dark:border-blue-500/30 bg-linear-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/15 dark:to-indigo-500/15"
                           : "border-slate-200 dark:border-white/5 bg-white/50 dark:bg-white/[0.03] hover:border-blue-200 dark:hover:border-white/10 hover:bg-slate-50 dark:hover:bg-white/[0.05]"
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="sidebar-active-pill"
-                          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/20 dark:to-indigo-500/20"
+                          className="absolute inset-0 rounded-2xl bg-linear-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/20 dark:to-indigo-500/20"
                           transition={{ type: "spring", stiffness: 260, damping: 24 }}
                         />
                       )}
                       <div
                         className={`relative z-10 flex items-center justify-center w-12 h-12 rounded-2xl transition-all duration-300 ${
                           isActive
-                            ? `bg-gradient-to-br ${section.color} text-white shadow-lg`
+                            ? `bg-linear-to-br ${section.color} text-white shadow-lg`
                             : "bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 group-hover:text-blue-500"
                         }`}
                       >
@@ -139,12 +139,12 @@ const HelpSidebar = () => {
 
               <motion.div
                 whileHover={{ y: -2 }}
-                className="relative overflow-hidden mt-8 rounded-3xl border border-blue-200 dark:border-indigo-500/20 bg-gradient-to-br from-blue-50 via-indigo-50 to-white dark:from-indigo-500/10 dark:via-blue-500/10 dark:to-slate-900/30 p-6"
+                className="relative overflow-hidden mt-8 rounded-3xl border border-blue-200 dark:border-indigo-500/20 bg-linear-to-br from-blue-50 via-indigo-50 to-white dark:from-indigo-500/10 dark:via-blue-500/10 dark:to-slate-900/30 p-6"
               >
                 <div className="absolute top-0 right-0 w-28 h-28 bg-blue-500/10 rounded-full blur-3xl" />
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-linear-to-br from-blue-500 to-indigo-600 text-white flex items-center justify-center shadow-lg">
                       <i className="fa-solid fa-sparkles text-lg"></i>
                     </div>
                     <div>
@@ -154,7 +154,7 @@ const HelpSidebar = () => {
                   </div>
                   <button
                     onClick={() => scrollToSection("support-links-section")}
-                    className="w-full rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-blue-500/20"
+                    className="w-full rounded-2xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-blue-500/20"
                   >
                     Support Links
                   </button>

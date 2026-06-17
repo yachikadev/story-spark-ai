@@ -23,7 +23,7 @@ const StorySegment = ({ text, choiceMade, index }: StorySegmentProps) => {
       className="rounded-3xl border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-slate-950/30 backdrop-blur-md dark:bg-slate-900/80"
     >
       <div className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-500 text-sm font-semibold text-white">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-linear-to-br from-cyan-400 to-blue-500 text-sm font-semibold text-white">
           {index}
         </span>
         <p className="whitespace-pre-line text-base leading-7 text-slate-100 sm:text-lg sm:leading-8">
