@@ -21,7 +21,7 @@ Add a character name, setting details, and a central conflict.
 
 Return ONLY the enhanced prompt, nothing else.
 
-Prompt: ${prompt}`;
+Prompt: ${prompt.replace(/\\/g, "\\\\").replace(/"/g, "\\\"")}`;
 
   const resultPromise = model.generateContent(metaPrompt);
 
