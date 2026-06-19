@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import CharacterProfileCard from "./CharacterProfileCard";
 import { CharacterProfile } from "./stories.utils";
 import { getShortenedText, ITopicData, topicsData } from "./stories.utils";
@@ -27,7 +26,7 @@ import { useDispatch } from "react-redux";
 import { setStory } from "../../redux/slices/storySlice";
 import ContinueStoryButton from "../story/ContinueStoryButton";
 import { useApiError } from "../../hooks/useApiError";
-import { useLocation } from "react-router-dom";
+import ReadingProgressBar from "./ReadingProgressBar";
 import {
   useGenerateAlternateEndingsMutation,
   useGenerateFreeAlternateEndingsMutation,
@@ -358,6 +357,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
   } = useAntiGravityScroll(storyScrollContainerRef);
 
   const audioPlayerRef = useRef<AudioPlayerHandle>(null);
+  const storyContentRef = useRef<HTMLDivElement>(null);
 
   // States
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -372,6 +372,7 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
 
   // Start with a clean state that adapts dynamically
   const [selectedStory, setSelectedStory] = useState<IStories | null>(null);
+  const [readingProgress, setReadingProgress] = useState<number>(0);
   const [topics, setTopics] = useState<ITopicData[]>(topicsData);
   const [selectTopics, setSelectTopics] = useState<ITopicData[]>([]);
   const [newTopicTitle, setNewTopicTitle] = useState<string>("");
@@ -429,6 +430,44 @@ const StoriesViewComponent: React.FC<StoriesComponentProps> = ({
       }));
     }
   }, [selectedStory, originalStoryContent]);
+
+  useEffect(() => {
+  if (!selectedStory) return;
+
+  const saved = localStorage.getItem(
+    `story-progress-${selectedStory.uuid}`
+  );
+
+  setReadingProgress(saved ? Number(saved) : 0);
+}, [selectedStory]);
+
+useEffect(() => {
+  const element = storyContentRef.current;
+
+  if (!element || !selectedStory) return;
+
+  const handleScroll = () => {
+    const progress =
+      (element.scrollTop /
+        (element.scrollHeight - element.clientHeight)) *
+      100;
+
+    const value = Math.min(100, Math.max(0, progress));
+
+    setReadingProgress(value);
+
+    localStorage.setItem(
+      `story-progress-${selectedStory.uuid}`,
+      value.toString()
+    );
+  };
+
+  element.addEventListener("scroll", handleScroll);
+
+  return () => {
+    element.removeEventListener("scroll", handleScroll);
+  };
+}, [selectedStory]);
 
   useEffect(() => {
     if (narrationState === "playing") {
